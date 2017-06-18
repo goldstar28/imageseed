@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Seeds - @(User.Identity.Name.Split('|')[1])</title>
+    @Styles.Render("~/css")
+</head>
+<body>
+<div class="panel header no-margin">
+    Image Seeds - @(User.Identity.Name.Split('|')[1])
+</div>
+<div class="panel menu no-margin">
+    <span class="menu-item">@Html.ActionLink("Home", "Index", "Home")</span>
+    <span class="menu-item">@Html.ActionLink("Albums", "Index", "Gallary")</span>
+    <span class="menu-item">@Html.ActionLink("Create Album", "CreateAlbum", "Gallary")</span>
+    <span class="menu-item float-right"><span> </span>@Html.ActionLink("Logout", "Logout", "Account")</span>
+</div>
+<div class="panel">
+    @RenderBody()
+</div>
+</body>
+</html>

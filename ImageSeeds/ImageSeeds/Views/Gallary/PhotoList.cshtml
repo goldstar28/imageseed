@@ -1,0 +1,33 @@
+﻿@model List<ImageSeeds.Codes.Entities.Photo>
+@{
+    ViewBag.Title = "PhotoList";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+}
+<h2>PhotoList</h2><a href="@Url.Action("AddPhoto", "Gallary", new {albumId = ViewBag.AlbumId})">Add Image</a>
+<div class="gallary-pan">
+    @if (Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <div class="gallary-item">
+                @{
+                    var imagepath = (ViewBag.ThumbnailImageDirectory + "/" + ViewBag.UserId + "/" + item.AlbumId + "/" + item.Name);
+                    var orgImagepath = (ViewBag.OriginalImageDirectory + "/" + ViewBag.UserId + "/" + item.AlbumId + "/" + item.Name);
+                }
+                <a href="@Url.Content(orgImagepath)" target="_blank" class="gallary-placeholder">
+                    <img src="@Url.Content(imagepath)" class="gallary-img" alt=""/>
+                </a>
+                <div class="gallary-details">
+                    <h3 class="text-center ellipsis" title="@item.Name">@item.Name</h3>
+                    <a class="float-right text-danger" href="@Url.Action("DeletePhoto", "Gallary", new {photoId = item.Id})">Delete</a>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="text-center">
+            <h2>No images in this album</h2>
+        </div>
+    }
+</div>

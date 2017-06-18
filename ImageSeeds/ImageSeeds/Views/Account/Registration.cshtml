@@ -1,0 +1,72 @@
+﻿@model ImageSeeds.Codes.Entities.User
+@{
+    ViewBag.Title = "Registration";
+    Layout = null;
+}
+<link href="@Url.Content("~/Assets/Styles.css")" rel="stylesheet"/>
+<body>
+@using (Html.BeginForm("Registration", "Account", FormMethod.Post, new {role = "form", enctype = "multipart/form-data", @autocomplete = "off", @novalidate = ""}))
+{
+    @Html.AntiForgeryToken()
+    <div class="panel-default registration">
+        <h2>Registration</h2>
+        <div>
+            <hr/>
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+            <div>
+                @Html.LabelFor(model => model.FirstName)
+                <div>
+                    @Html.EditorFor(model => model.FirstName)
+                </div>
+                <div>
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div>
+                @Html.LabelFor(model => model.LastName)
+                <div>
+                    @Html.EditorFor(model => model.LastName)
+                </div>
+                <div>
+                    @Html.ValidationMessageFor(model => model.LastName, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div>
+                @Html.LabelFor(model => model.UserName)
+                <div>
+                    @Html.EditorFor(model => model.UserName, new {htmlAttributes = new {@autocomplete = "new-password"}})
+                </div>
+                <div>
+                    @Html.ValidationMessageFor(model => model.UserName, "", new {@class = "text-danger", @autocomplete = "off"})
+                </div>
+            </div>
+            <div>
+                @Html.LabelFor(model => model.Password)
+                <div>
+                    @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@type = "password", @autocomplete = "new-password"}})
+                </div>
+                <div>
+                    @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div>
+                @Html.LabelFor(model => model.Email)
+                <div>
+                    @Html.EditorFor(model => model.Email)
+                </div>
+                <div>
+                    @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div>
+                <div>
+                    <input type="submit" value="Register"/>
+                </div>
+            </div>
+            <div>
+                @Html.ActionLink("Login", "Login", "Account")
+            </div>
+        </div>
+    </div>
+}
+</body>

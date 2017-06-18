@@ -1,0 +1,29 @@
+﻿@model ImageSeeds.Codes.ViewModels.NewImageViewModel
+
+@{
+    View.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Image</h2>
+
+@using (Html.BeginForm("new", "image", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <p>
+        @Html.LabelFor(m => m.Name)
+        @Html.EditorFor(m => m.Name)
+        @Html.ValidationMessageFor(m => m.Name)
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Tags)
+        @Html.TextBoxFor(m => m.Tags, new { @class = "autocomplete tags", @ref = "/Search/Tags" })
+        @Html.ValidationMessageFor(m => m.Tags)
+    </p>
+    <p>
+        <label for="imageFile">Choose Image</label>
+        <input type="file" name="imageFile"
+                multiple="multiple" accept=".jpeg,.jpg, .png, .gif"/>
+        @Html.ValidationMessage("imageFile")
+    </p>
+    <input type="submit" />
+}

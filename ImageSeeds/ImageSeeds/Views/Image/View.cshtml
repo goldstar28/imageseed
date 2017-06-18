@@ -1,0 +1,21 @@
+﻿@model ImageSeeds.Codes.ViewModels.ImageViewModel
+
+@{
+    View.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>View Image</h2>
+
+<div style="margin-top: 17px;">
+    <div id="links">
+        <a href="@item.ImagePath">
+            <img src="@item.ThumbPath" alt="image" class="img-rounded" style="margin-bottom:7px;" />
+        </a>
+        <div id="links">
+            <a href="@item.ImagePath">
+                <button type="button" style="margin-bottom:3px;">Continue to your image</button>
+            </a>
+        </div>
+    </div>
+</div>

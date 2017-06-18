@@ -1,0 +1,38 @@
+﻿@model ImageSeeds.Codes.ViewModels.NewImageViewModel
+
+@{
+    View.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Image</h2>
+
+<div id="page_body" class="page_body">
+
+    @foreach (var item in Model.Content)
+        <table cellpadding="5" cellspacing="0" border="0" style="width: 100%;">
+            <tr>
+                <td style="width: 20%;" valign="middle" class="text_align_center">
+                    <a href="@item.ImagePath"><img src="@item.ThumbPath" alt="Image" style="width: 125px; height: 93.75px;" /></a>
+                </td>
+                <td style="width: 80%;">
+                    <table cellspacing="1" cellpadding="0" border="0" style="width: 100%;">
+                       
+                        <tr>
+                            <td><input readonly="readonly" class="input_field" onclick="highlight(this);" type="text" style="width: 605px;" value="<a href="http://xyz.com+@item.ImagePath"><img src="http://xyz.com+@item.ThumbPath" border="0" alt="47081618974502300200.jpg" /></a></td>
+                            <td>Thumbnail for Website</td>
+                        </tr>
+                        <tr>
+                            <td><input readonly="readonly" class="input_field" onclick="highlight(this);" type="text" style="width: 605px;" value="[URL=http://xyz.com+@item.ImagePath][IMG]http://imgdream.net/images/47081618974502300200_thumb.jpg[/IMG][/URL]" /></td>
+                            <td>Thumbnail for Forum</td>
+                        </tr>
+                        <tr>
+                            <td><input readonly="readonly" class="input_field" onclick="highlight(this);" type="text" style="width: 605px;" value="Thanks to ImageSeeds for<a href="http://xyz.com">free image hosting</a> /></td>
+                            <td>Link to Us</td>
+                        </tr>
+                    
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>

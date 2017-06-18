@@ -1,0 +1,36 @@
+﻿@using ImageSeeds.Codes.Repositories
+@model IEnumerable<ImageSeeds.Codes.Entities.Album>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+}
+<h2>Gallary</h2>
+<div class="gallary-pan">
+    @if (Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <div class="gallary-item">
+                <a href="@Url.Action("PhotoList", new {albumId = item.Id})" class="gallary-placeholder">
+                    @{
+                        var repository = new PhotoRepository();
+                        var defaultImage = repository.ListPhotosByAlbumId(item.Id).FirstOrDefault();
+                        var imagepath = defaultImage != null ? (ViewBag.ThumbnailImageDirectory + "/" + item.UserId + "/" + item.Id + "/" + defaultImage.Name) : ViewBag.DefaultThumbnail;
+                    }
+                    <img src="@Url.Content(imagepath)" class="gallary-img" alt=""/>
+                </a>
+                <div class="gallary-details">
+                    <h3 class="text-center">@item.Name</h3>
+                    <a class="float-left" href="@Url.Action("EditAlbum", "Gallary", new {id = item.Id})">Edit</a>
+                    <a class="float-right text-danger" href="@Url.Action("DeleteAlbum", "Gallary", new {albumId = item.Id})">Delete</a>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="text-center">
+            <h2>No albums in your gallary</h2>
+        </div>
+    }
+</div>
